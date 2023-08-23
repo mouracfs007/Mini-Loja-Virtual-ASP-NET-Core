@@ -9,7 +9,6 @@ namespace VShop.ProductApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class ProductsController : ControllerBase
     {
 
@@ -43,6 +42,7 @@ namespace VShop.ProductApi.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = Role.Admin)]
         public async Task<ActionResult> Post([FromBody] ProductDTO productDto)
         {
 
@@ -57,6 +57,7 @@ namespace VShop.ProductApi.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = Role.Admin)]
         public async Task<ActionResult<ProductDTO>> Put([FromBody] ProductDTO productDto)
         {
             if (productDto == null)
@@ -73,7 +74,7 @@ namespace VShop.ProductApi.Controllers
         public async Task<ActionResult<ProductDTO>> Delete(int id)
         {
             var productDto = await _productService.GetProductById(id);
-            
+
             if (productDto == null)
             {
                 return NotFound("Product not found");

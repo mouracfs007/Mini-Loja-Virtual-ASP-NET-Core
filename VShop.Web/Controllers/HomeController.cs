@@ -2,19 +2,39 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using VShop.Web.Models;
+using VShop.Web.Services.Contracts;
 
 namespace VShop.Web.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IProductService _productService;
+        public HomeController(ILogger<HomeController> logger, IProductService productService)
         {
             _logger = logger;
+            _productService = productService;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var result = await _productService.GetAllProducts(string.Empty);
+
+            if (result is null)
+                return View("Error");
+
+            return View(result);
+        }
+
+        [HttpGet]
+
+        public async Task<ActionResult<ProductViewModel>> ProductDetails(int id)
+        {
+            var product = await _productService.FindProductById(id, string.Empty);
+
+            if (product is null)
+                return View("Error");
+
+            return View(product);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
