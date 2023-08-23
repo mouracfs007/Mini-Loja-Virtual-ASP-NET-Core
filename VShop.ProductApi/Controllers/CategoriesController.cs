@@ -36,7 +36,7 @@ namespace VShop.ProductApi.Controllers
         public async Task<ActionResult<IEnumerable<CategoryDTO>>> GetCategoriesProducts()
         {
             var categoriesDto = await _categoryService.GetCategoriesProducts();
-            if (categoriesDto is null)
+            if (categoriesDto == null)
             {
                 return NotFound("Categories not found");
             }
@@ -47,7 +47,7 @@ namespace VShop.ProductApi.Controllers
         public async Task<ActionResult<IEnumerable<CategoryDTO>>> Get(int id)
         {
             var categoryDto = await _categoryService.GetCategoryById(id);
-            if (categoryDto is null)
+            if (categoryDto == null)
             {
                 return NotFound("Categories not found");
             }
@@ -76,17 +76,18 @@ namespace VShop.ProductApi.Controllers
             {
                 return BadRequest();
             }
-            if (categoryDto is null)
+            if (categoryDto == null)
             {
                 return BadRequest();
             }
 
             await _categoryService.UpdateCategory(categoryDto);
+
             return Ok(categoryDto);
         }
 
         [HttpDelete("{id:int}")]
-        [Authorize(Roles = Role.Admin)]
+       // [Authorize(Roles = Role.Admin)]
         public async Task<ActionResult<CategoryDTO>> Delete(int id)
         {
             var categoryDto = await _categoryService.GetCategoryById(id);

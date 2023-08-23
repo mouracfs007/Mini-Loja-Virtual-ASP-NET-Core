@@ -1,5 +1,4 @@
 ﻿using VShop.ProductApi.DTOs;
-using VShop.ProductApi.Models;
 
 namespace VShop.ProductApi.Services;
 

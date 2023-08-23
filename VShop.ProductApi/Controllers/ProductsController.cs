@@ -24,7 +24,7 @@ namespace VShop.ProductApi.Controllers
         public async Task<ActionResult<IEnumerable<ProductDTO>>> Get()
         {
             var productsDto = await _productService.GetProducts();
-            if (productsDto is null)
+            if (productsDto == null)
             {
                 return NotFound("Products not found");
             }
@@ -35,7 +35,7 @@ namespace VShop.ProductApi.Controllers
         public async Task<ActionResult<IEnumerable<ProductDTO>>> Get(int id)
         {
             var productDto = await _productService.GetProductById(id);
-            if (productDto is null)
+            if (productDto == null)
             {
                 return NotFound("Product not found");
             }
@@ -57,7 +57,7 @@ namespace VShop.ProductApi.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult> Put([FromBody] ProductDTO productDto)
+        public async Task<ActionResult<ProductDTO>> Put([FromBody] ProductDTO productDto)
         {
             if (productDto == null)
             {

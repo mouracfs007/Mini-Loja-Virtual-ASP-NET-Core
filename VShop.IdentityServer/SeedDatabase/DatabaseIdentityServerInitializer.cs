@@ -40,6 +40,7 @@ public class DatabaseIdentityServerInitializer : IDatabaseSeedInitializer
             _roleManager.CreateAsync(roleClient).Wait();
         }
     }
+
     public void InitializeSeedUsers()
     {
         //se o usuario admin não existir cria o usuario , define a senha e atribui ao perfil
@@ -201,4 +202,6 @@ public class DatabaseIdentityServerInitializer : IDatabaseSeedInitializer
             }
         }
     }
+
+
 }
