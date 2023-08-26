@@ -153,7 +153,7 @@ public class CartRepository : ICartRepository
             await _context.SaveChangesAsync();
         }
     }
-    
+
     public async Task<bool> ApplyCouponAsync(string userId, string couponCode)
     {
         var cartHeaderApplyCoupon = await _context.CartHeaders
@@ -189,5 +189,5 @@ public class CartRepository : ICartRepository
         }
         return false;
     }
-    
+
 }
