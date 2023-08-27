@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="~/VShop.Web.styles.css" asp-append-version="true" />
     @*<link rel="stylesheel" href="~/font-awesome/css/fontawesome.css"/>*@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/1.2.1/knockout-min.js"></script>
 </head>
 <body>
     <header>
@@ -35,6 +37,7 @@
                         <li class="nav-item text-dark">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index">
                                 <i class="fas fa-shopping-cart"></i>
+                                <div class="itemValor_Carr animated bounce" id="carrinhoIndex"></div>    
                             </a>
                         </li>
                     </ul>
@@ -56,6 +59,36 @@
             &copy; 2023 - Project VShop.Web - Desenvolvido By: Dani Moura
         </div>
     </footer>
+
+    <style>
+        .bounce {
+            animation-name: bounce;
+            transform-origin: center bottom;
+        }
+
+        .animated {
+            animation-duration: 1s;
+            animation-fill-mode: both;
+        }
+
+        .itemValor_Carr {
+            text-align: center;
+            position: relative;
+            border-radius: 100%;
+            background: #ff5510;
+            font: 13px/19px "Open Sans",Arial,Helvetica,sans-serif;
+            font-weight: 600;
+            color: #fff;
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            transform: scale(1);
+            transition: all .3s;
+            -webkit-transform: scale(1);
+            -webkit-transition: all .3s;
+            top: -5px;
+        }
+    </style>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
